@@ -8,8 +8,12 @@ Gem::Specification.new do |spec|
   spec.version       = ImageRotator::VERSION
   spec.authors       = ["Benjamin Schaefer"]
   spec.email         = ["benjamin.schaefer@werbeboten.de"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{ contains a jQuery plugin that handles rotation of 
+                       images, including sprite animations. }
+  spec.description   = %q{ This gem allows you to rotate any html content in the 
+                       DOM object. It's destined for images. You can also use it 
+                       for sprite animations. The easing is selectable. Also, 
+                       rotation blurring is available. }
   spec.homepage      = ""
   spec.license       = "MIT"
 
