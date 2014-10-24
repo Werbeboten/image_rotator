@@ -1,4 +1,4 @@
-# ImageRotator
+s# ImageRotator
 
 This is a gem for the image_rotator jQuery plugin. It allows you to rotate any html content in a DOM object. It's destined for images. You can also use it for sprite animations. The easing is selectable. Also, rotation blurring is available. The gem's purpose is to easily integrate the imageRotator plugin into your Rails app.
 
@@ -22,11 +22,24 @@ After this, add the following line into your app/assets/javascripts/application.
     
     //= require image_rotator_main
 
+Note: This gem requires jquery-ui. So make sure that the following line is in your application.js:
+
+  //= require jquery-ui
+
+And in your application.css:
+
+  /*
+   *=require jquery-ui
+   */
+
+Or, if you have an application.css.scss, use instead:
+
+  @import "jquery-ui";
+  
 
 ## Usage
 
 ###Initialization
-
 
 ####Initialization for any html content
 
