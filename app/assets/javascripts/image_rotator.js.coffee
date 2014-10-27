@@ -89,7 +89,8 @@ class @ImageRotator
     rotator = @
     duration =  @_msPerDeg * Math.abs(to.deg - from.deg)
 
-    $(from).animate to,
+
+    $(from).css("transform", "translateZ(0)").animate(to , {
       duration: duration
       easing: @options.easing
       start: ->
@@ -98,9 +99,12 @@ class @ImageRotator
       step: ->
         rotator.options.onAnimateStep(rotator)
 
-        return if rotator.curDegInt == parseInt(@deg)
+        return if rotator.curDeg == @deg
 
         rotator._changeCanvas(@deg)
+
+        return if rotator.curDegInt == parseInt(@deg)
+        
         if rotator.options.blur 
           realBlur = @blur
           if realBlur > rotator.options.blurThreshold 
@@ -118,7 +122,7 @@ class @ImageRotator
       always: ->
         rotator._log("always")
         rotator._animating = false
-
+    }).css("transform", "none")
 
   #resets the class
   reset: => 
@@ -268,20 +272,27 @@ class @ImageRotator
       
       if $.type(arguments[0]) == "string"
         #reset
-        if(arguments[0] == "reset" )
+        if arguments[0] == "reset" 
           rotator.reset()
-        #animate
+        #isAnimating
+        else if arguments[0] == "isAnimating"
+          return rotator._animating
+        # TODO :
+        else if arguments[0] == "get"
+          return rotator
         else 
           num = if $.type(arguments[1]) == "number" then arguments[1] else 0
           #animate
-          if(arguments[0] == "animate")
+          if arguments[0] == "animate"
             rotator.animate(num)
           #animateTo
-          else if(arguments[0] == "animateTo")
+          else if arguments[0] == "animateTo"
             rotator.animateTo(num)
 
       return rotator
-    else
+    else 
+      # TODO: fix double initializing
+      
       value = "jquery-image-rotator-#{Number(new Date())}-#{Math.floor(Math.random()*1001)}"
       #default values which will be overwritten if available
       url = null
