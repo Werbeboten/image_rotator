@@ -89,7 +89,8 @@ class @ImageRotator
     rotator = @
     duration =  @_msPerDeg * Math.abs(to.deg - from.deg)
 
-    $(from).animate to,
+
+    $(from).css("transform", "translateZ(0)").animate(to , {
       duration: duration
       easing: @options.easing
       start: ->
@@ -118,7 +119,7 @@ class @ImageRotator
       always: ->
         rotator._log("always")
         rotator._animating = false
-
+    }).css("transform", "none")
 
   #resets the class
   reset: => 
